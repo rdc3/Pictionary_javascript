@@ -82,7 +82,10 @@ class Game {
       wordsGuessed.forEach(guess => form.addGuessToOutputTable(guess.player, guess.word));
       console.log('wordsGuessed:', wordsGuessed);
       console.log('guessTimeElapsed:', guessTimeElapsed)
-      guessTimeElapsed = 0;
+      if (wordsGuessed && wordsGuessed.length > 0 && wordsGuessed[wordsGuessed.length - 1].word.toLowerCase() === drawingWord.toLowerCase()) { 
+        guessTimeElapsed = 0;
+        Form.cleanCanvas();
+      }
     });
     if (!pickedWordDBRef.exists() || (pickedWordDBRef.exists() && pickedWordDBRef.val() === pickedWordDefault)) {
       var wordsRef = await database.ref('words').once("value");
@@ -127,9 +130,9 @@ class Game {
 
   
   async roundTimeup() {
+    Form.cleanCanvas();
     this.resetPickedWord();
     if (currentRound >= maxRounds && notYetArtist.length === 0) {
-      Form.cleanCanvas();
       Game.update(3);
     }
     wordsGuessed.push({ player: player.name, word: 'times up.....' });
@@ -185,7 +188,6 @@ class Game {
   }
 
   static changePlayerRole(players) {
-    // console.log("init now");
     allPlayers.forEach(p => { p.type = (players.find(up => up.id === p.id)) ? players.find(up => up.id === p.id).type : Player.playerRoles.guesser; })
     notYetArtist = players.filter(p => p.type === Player.playerRoles.guesser);
     database.ref("/").update({ roundInfo: { Round: currentRound, notYetArtist: notYetArtist } });

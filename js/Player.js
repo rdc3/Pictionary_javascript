@@ -71,6 +71,7 @@ class Player {
   static getPlayerInfo() {
     var playerInfoRef = database.ref('players');
     playerInfoRef.on("value", (data) => {
+      
       var players = data.val();
       allPlayers = []
       if (players) {

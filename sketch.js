@@ -60,6 +60,9 @@ function mobileAndTabletCheck() {
 };
 
 function draw() {
+  if (gameState !== 2 && form) {
+    form.hideRound2Controls();
+  }
   if (playerCount === maxCount && gameState === 1) {
     Game.update(2);
     game.nextRound();
@@ -127,9 +130,6 @@ function draw() {
     }
 
     form.message.html(msg)
-  }
-  if (gameState !== 2 && form) {
-    form.hideRound2Controls();
   }
 }
 function keyReleased() {

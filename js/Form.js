@@ -171,11 +171,11 @@ class Form {
   }
 
   hideArtistControls() {
-    this.clearCanvasButton.attribute('disabled', '');
+    this.clearCanvasButton.hide();
     this.guessInput.show();
   }
   hideGuesserControls() {
-    this.clearCanvasButton.removeAttribute('disabled');
+    this.clearCanvasButton.show();
     this.guessInput.hide();
   }
   hideRound2Controls() {
