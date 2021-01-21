@@ -80,8 +80,7 @@ class Game {
       if (gameState === 2)
         form.createFreshTable();
       wordsGuessed.forEach(guess => form.addGuessToOutputTable(guess.player, guess.word));
-      console.log('wordsGuessed:', wordsGuessed);
-      console.log('guessTimeElapsed:', guessTimeElapsed)
+
       if (wordsGuessed && wordsGuessed.length > 0 && wordsGuessed[wordsGuessed.length - 1].word.toLowerCase() === drawingWord.toLowerCase()) { 
         guessTimeElapsed = 0;
         Form.cleanCanvas();
@@ -94,7 +93,6 @@ class Game {
       }
       if (words.length > 0) {
         const random = Math.floor(Math.random() * words.length);
-        // console.log(random, words[random]);
         database.ref('/drawings/canvas/').update({ word: words[random] });
         return words[random];
       } else {
@@ -141,7 +139,6 @@ class Game {
   }
 
   async start() {
-    console.log("gameState:", gameState)
     if (!gameState) gameState = 0;
     if (!player || !player.name)
       player = new Player();
@@ -210,7 +207,6 @@ class Game {
       }
 
       background(0);
-     // console.log("mobile point", isDrawing, touches)
       if (isDrawing) {
         var point = null;
         // capture drawing in mobile browser
@@ -222,7 +218,6 @@ class Game {
               y: touches[i].y,
               color: lineColor
             };
-         //   console.log("mobile point", point)
           }
         }
 
@@ -269,7 +264,6 @@ class Game {
 
 
   nextPlayersTurnToDraw() {
-    console.log('next change');
     if (notYetArtist && notYetArtist.length > 0) {
       notYetArtist[0].type = Player.playerRoles.artist;
       Game.changePlayerRole(notYetArtist);
@@ -279,7 +273,6 @@ class Game {
     }
   }
   async nextRound() {
-    console.log('in Next round', { Round: currentRound, notYetArtist: (notYetArtist) ? notYetArtist : 0 });
     await database.ref("/roundInfo").update({ Round: currentRound, notYetArtist: (notYetArtist) ? notYetArtist : 0 });
 
     allPlayers.forEach(p => p.type = Player.playerRoles.guesser)

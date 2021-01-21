@@ -69,7 +69,6 @@ function draw() {
   }
   if (gameState === 2) {
     clear();
-  // console.log('touches:', touches)
     game.loop(touches);
     cursor(CROSS);
     if (player && player.type === Player.playerRoles.artist) {
@@ -97,7 +96,6 @@ function draw() {
     noStroke();
     text("SCORE : "+ player.score,width-100,50)
     text("TIME LEFT : "+ (maxTime-guessTimeElapsed),width-100,100)
-    // console.log(maxTime-guessTimeElapsed);
     if(maxTime === guessTimeElapsed){
       game.roundTimeup();
     }
@@ -152,7 +150,6 @@ function mousePressed() {
 }
 function mouseReleased() {
   if (mouseX < colorWheel.width && mouseY < colorWheel.height) {
-   // console.log('colorPicked=', colorPicked);
     lineColor = colorPicked;
   }
 }

@@ -205,10 +205,8 @@ class Form {
           word: drawingWord
         }
       };
-      var result = ref.update(data, (err, status) => {
-        // console.log("DB Update Status:", status);
-      });
-      // console.log("DB Update:", result.key);
+      // var result = ref.update(data, (err, status) => {
+      // });
     }
   }
 
@@ -231,7 +229,6 @@ class Form {
     if (key instanceof MouseEvent) {
       key = this.html();
     }
-    // console.log('fetching :drawings/' + key);
     if (drawings) {
       drawing = (drawings) ? drawings : []
     } else {

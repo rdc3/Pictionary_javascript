@@ -7,7 +7,6 @@ class Player {
       this.id = String(localStorage.getItem("playerId"));
     else {
       this.id = Player.generateId();
-      console.log("playerid:", this.id);
       localStorage.setItem("playerId", this.id);
     }
     this.rank = 0;
@@ -59,8 +58,6 @@ class Player {
     if (aPRef.exists() && aPRef.val()) {
       aP = aPRef.val();
     }
-    console.log(aP);
-    console.log(updatedPlayers);
     Object.keys(aP).forEach(key =>
       database.ref('players/' + key ).update({
         type: updatedPlayers.find(up => up.id === aP[key].id).type
