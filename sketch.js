@@ -8,7 +8,6 @@ var notYetArtist;
 var maxCount;
 var maxRounds;
 var maxTime = 30;
-var artistCanvasWidth = 500;
 var database;
 
 
@@ -90,7 +89,6 @@ function draw() {
     for (var i = 0; i < touches.length; i++) {
       fill(lineColor[0], lineColor[1], lineColor[2], 150);
       ellipse(touches[i].x, touches[i].y, 50, 50);
-
     }
     fill("white")
     noStroke();

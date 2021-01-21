@@ -200,8 +200,7 @@ class Form {
         canvas: {
           name: player.name,
           drawing: drawing.map(p => (p.length > 0) ? p : null),
-          word: drawingWord,
-          canvasWidth: windowWidth
+          word: drawingWord
         }
       };
       var result = ref.update(data, (err, status) => {
@@ -215,7 +214,6 @@ class Form {
     var drawings = data.val();
     if (drawings) {
       // var keys = Object.keys(drawings);
-      artistCanvasWidth = drawings.canvas.canvasWidth;
       // for (var i = 0; i < keys.length; i++) {
       //   var key = keys[i];
         if (player.type === Player.playerRoles.guesser) {

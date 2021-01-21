@@ -227,8 +227,8 @@ class Game {
         // capture drawing in desktop browser
         if (!(mouseX < colorWheel.width && mouseY < colorWheel.height)) {
           point = {
-            x: mouseX,
-            y: mouseY,
+            x:  map(mouseX, 0, windowWidth, 0, 100),
+            y: map(mouseY, 0, windowWidth, 0, 100),
             color: lineColor
           };
         }
@@ -245,8 +245,8 @@ class Game {
             beginShape();
             for (var j = 0; j < path.length; j++) {
               stroke(path[j].color);
-              var mapX = map(path[j].x, 0, artistCanvasWidth, 0, windowWidth)
-              var mapY = map(path[j].y, 0, artistCanvasWidth, 0, windowWidth)
+              var mapX = map(path[j].x, 0, 100, 0, windowWidth)
+              var mapY = map(path[j].y, 0, 100, 0, windowWidth)
               vertex(mapX, mapY);
             }
             endShape();
