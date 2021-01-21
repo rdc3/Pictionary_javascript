@@ -276,13 +276,13 @@ class Game {
       this.nextRound();
     }
   }
-  nextRound() {
-    console.log('in Next round');
-    database.ref("/roundInfo").update({ Round: currentRound, notYetArtist: (notYetArtist) ? notYetArtist : 0 });
+  async nextRound() {
+    console.log('in Next round', { Round: currentRound, notYetArtist: (notYetArtist) ? notYetArtist : 0 });
+    await database.ref("/roundInfo").update({ Round: currentRound, notYetArtist: (notYetArtist) ? notYetArtist : 0 });
 
     allPlayers.forEach(p => p.type = Player.playerRoles.guesser)
     allPlayers[0].type = Player.playerRoles.artist;
-    Game.changePlayerRole(allPlayers);
+    await Game.changePlayerRole(allPlayers);
   }
 
   end() {
