@@ -65,6 +65,7 @@ class Game {
 
   async pickWord() {
     
+    wordsGuessed = []
     var words = [];
     var pickedWordDBRef = await database.ref('drawings/canvas/word').once("value");
     // listen to the change in the word to guess
@@ -131,7 +132,6 @@ class Game {
       Form.cleanCanvas();
       Game.update(3);
     }
-    wordsGuessed = []
     wordsGuessed.push({ player: player.name, word: 'times up.....' });
     await database.ref('/drawings/canvas/').update({ wordsGuessed: wordsGuessed });
     this.nextPlayersTurnToDraw();

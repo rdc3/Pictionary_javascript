@@ -176,6 +176,11 @@ class Form {
     this.clearCanvasButton.removeAttribute('disabled');
     this.guessInput.hide();
   }
+  hideRound2Controls() {
+    this.clearCanvasButton.hide();
+    this.guessInput.hide();
+    
+  }
 
   static startDrawing() {
     isDrawing = (player.type === Player.playerRoles.artist);

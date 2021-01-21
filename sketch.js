@@ -96,7 +96,7 @@ function draw() {
     noStroke();
     text("SCORE : "+ player.score,width-100,50)
     text("TIME LEFT : "+ (maxTime-guessTimeElapsed),width-100,100)
-    console.log(maxTime-guessTimeElapsed);
+    // console.log(maxTime-guessTimeElapsed);
     if(maxTime === guessTimeElapsed){
       game.roundTimeup();
     }
@@ -106,13 +106,16 @@ function draw() {
     canvas.hide();
     //game.wait();
     game.end();
-
+    noLoop();
   }
-  if (playerCount > maxCount && maxCount !== 0) {
-    if (form)
-      form.tooManyError();
+  var msg = "";
+  if (gameState === 0) {
+    if (playerCount > maxCount && maxCount !== 0) {
+      if (form)
+        form.tooManyError();
+    }
+    msg = "Enter the data to begin."
   }
-  var msg = "Enter the data to begin."
   if (form) {
     if (!player || player.type === Player.playerRoles.guesser) {
       cursor("not-allowed");
@@ -126,6 +129,9 @@ function draw() {
     }
 
     form.message.html(msg)
+  }
+  if (gameState !== 2 && form) {
+    form.hideRound2Controls();
   }
 }
 function keyReleased() {
