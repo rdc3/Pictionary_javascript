@@ -61,8 +61,8 @@ function mobileAndTabletCheck() {
 
 function draw() {
   if (playerCount === maxCount && gameState === 1) {
-    game.nextRound();
     Game.update(2);
+    game.nextRound();
   }
   if (gameState === 2) {
     clear();
