@@ -125,7 +125,9 @@ class Form {
 
   }
   getNewGuess() {
-    return this.guessInput.value();
+    var val = this.guessInput.value();
+    this.guessInput.elt.value = "";
+    return val;
   }
   addGuessToOutputTable(byWho, word) {
     this.addTableRow(byWho, word)
